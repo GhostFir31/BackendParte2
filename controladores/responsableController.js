@@ -6,9 +6,13 @@ const obtenerResponsables = (req, res) => {
 };
 
 const agregarResponsable = (req, res) => {
-    const nuevoResponsable = req.body;
-    responsableModel.agregar(nuevoResponsable);
-    res.status(201).send('Responsable agregado correctamente');
+    try {
+        const nuevoResponsable = req.body;
+        responsableModel.agregar(nuevoResponsable);
+        res.status(201).json({ message: 'Responsable agregado exitosamente' });
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
 };
 
 module.exports = { obtenerResponsables, agregarResponsable};

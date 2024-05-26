@@ -7,9 +7,13 @@ const obtenerActivos = (req, res) => {
 };
 
 const agregarActivo = (req, res) => {
-    const nuevoActivo = req.body;
-    activoModel.agregar(nuevoActivo);
-    res.status(201).send('Activo agregado correctamente');
+    try {
+        const nuevoActivo = req.body;
+        activoModel.agregar(nuevoActivo);
+        res.status(201).json({ message: 'Activo agregado exitosamente' });
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
 };
 
 module.exports = {

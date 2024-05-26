@@ -24,6 +24,12 @@ const obtenerTodos = () => {
 };
 
 const agregar = (nuevaUbicacion) => {
+    
+    const { idUbicacion, descripcion, activosAsociados } = nuevaUbicacion;
+    if (!idUbicacion || !descripcion || !activosAsociados) {
+        throw new Error('Todos los campos son obligatorios');
+    }
+
     ubicaciones.push(nuevaUbicacion);
 };
 

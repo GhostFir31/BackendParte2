@@ -27,7 +27,13 @@ const obtenerTodos = () => {
 };
 
 const agregar = (nuevoResponsable) => {
-    responsables.push(nuevoResponsable);
+    
+     const { idResponsable, numeroEmpleado, nombre, activosCustodia } = nuevoResponsable;
+     if (!idResponsable || !numeroEmpleado || !nombre || !activosCustodia) {
+         throw new Error('Todos los campos son obligatorios');
+     }
+ 
+     responsables.push(nuevoResponsable);
 };
 
 module.exports = {

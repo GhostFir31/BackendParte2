@@ -7,9 +7,13 @@ const obtenerUbicaciones = (req, res) => {
 };
 
 const agregarUbicacion = (req, res) => {
-    const nuevaUbicacion = req.body;
-    ubicacionModel.agregar(nuevaUbicacion);
-    res.status(201).send('Ubicacion agregado correctamente');
+    try {
+        const nuevaUbicacion = req.body;
+        ubicacionModel.agregar(nuevaUbicacion);
+        res.status(201).json({ message: 'Ubicación agregada exitosamente' });
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
 };
 
 module.exports = {

@@ -1,3 +1,4 @@
+
 const activos = [
     {
         id : "1111",
@@ -37,9 +38,18 @@ const obtenerTodos = () => {
 };
 
 const agregar = (nuevoActivo) => {
+    
+    const { id, numeroSerie, numeroInventario, tipo, descripcion, ubicacion, responsable } = nuevoActivo;
+    if (!id || !numeroSerie || !numeroInventario || !tipo || !descripcion || !ubicacion || !responsable) {
+        throw new Error('Todos los campos son obligatorios');
+    }
+    const existeActivo = activos.some(activo => activo.id === id);
+    if (existeActivo) {
+        throw new Error('Ya existe un activo con este ID');
+    }
+
     activos.push(nuevoActivo);
 };
-
 module.exports = {
     obtenerTodos,
     agregar
