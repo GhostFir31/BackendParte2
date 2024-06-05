@@ -1,7 +1,7 @@
 const models = require('./models');
 async function consulta() {  
-   const tags = await models.Tag.findAll();
-   tags.forEach(tag =>{
+   const tag = await models.Tag.findAll();
+   tag.forEach(tag =>{
        console.log(tag.dataValues);
    });
    const activos = await models.Activo.findAll();
